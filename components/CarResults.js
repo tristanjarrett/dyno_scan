@@ -1,19 +1,32 @@
-export default function CarResults({ data }) {
+import Link from 'next/link';
+
+export default function CarResults({ data, image }) {
+  const price = 4.99;
+
   return (
-    <div className="bg-gray-100 rounded p-4">
-      <h2 className="text-lg font-bold mb-2">Vehicle Details</h2>
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-2">
-        <dt className="text-gray-500 font-bold">Make:</dt>
-        <dd>{data.make}</dd>
-        <dt className="text-gray-500 font-bold">Model:</dt>
-        <dd>{data.model}</dd>
-        <dt className="text-gray-500 font-bold">Colour:</dt>
-        <dd>{data.colour}</dd>
-        <dt className="text-gray-500 font-bold">Year:</dt>
-        <dd>{data.yearOfManufacture}</dd>
-        <dt className="text-gray-500 font-bold">Engine size:</dt>
-        <dd>{data.engineCapacity.cc}cc</dd>
-      </dl>
+    <div className="bg-white rounded-lg shadow-lg p-8 max-w-xl mx-auto">
+      <p className="text-2xl font-bold mb-4">Car Details</p>
+      <hr className="my-4" />
+      <div className="flex items-center mb-8">
+        <img src={image} alt={`${data.make} ${data.model}`} className="w-48 h-48 mr-8 rounded-lg shadow-lg" />
+        <div>
+          <p className="text-lg font-bold mb-2">Make: {data.make}</p>
+          <p className="text-lg font-bold mb-2">Model: {data.model}</p>
+          <p className="text-lg font-bold mb-2">Colour: {data.colour}</p>
+          <p className="text-lg font-bold mb-2">Year: {data.yearOfManufacture}</p>
+          <p className="text-lg font-bold mb-2">Engine size: {data.engineCapacity.cc}cc</p>
+        </div>
+      </div>
+      <hr className="my-4" />
+      <div>
+        <p className="text-2xl font-bold mb-4">Get a full car report for just £{price.toFixed(2)}</p>
+        <p className="text-lg mb-4">
+          Unlock more details about this vehicle, including its history, MOT records, accident history, and more.
+        </p>
+        <Link href="/" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded focus:outline-none focus:shadow-outline">
+          Buy report
+        </Link>
+      </div>
     </div>
   )
 }
